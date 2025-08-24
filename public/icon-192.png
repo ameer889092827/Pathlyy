@@ -1,0 +1,13 @@
+
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333ea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="32" fill="url(#grad3)"/>
+  <path d="M48 74h96v12H48v-12zm0 26h74v12H48v-12zm0 26h52v12H48v-12z" fill="white"/>
+  <circle cx="144" cy="118" r="20" fill="white"/>
+  <text x="96" y="160" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">Pathly</text>
+</svg>
