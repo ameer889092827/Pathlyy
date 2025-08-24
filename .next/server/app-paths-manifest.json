@@ -1,1 +1,6 @@
-{}
+{
+  "/page": "app/page.js",
+  "/assessment/page": "app/assessment/page.js",
+  "/api/ai-chat/route": "app/api/ai-chat/route.js",
+  "/majors/page": "app/majors/page.js"
+}
