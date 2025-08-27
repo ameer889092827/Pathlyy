@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Target, TrendingUp, User } from "lucide-react";
+import { ArrowRight, BookOpen, Rocket, RocketIcon, Target, TrendingUp, User } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect, useState } from "react";
@@ -27,7 +27,7 @@ export default function Hero() {
 
   const features = [
     {
-      icon: Target,
+      icon: Rocket,
       title: t("hero.whyChooseUs"),
       description: t("hero.whyChooseUsSubtitle"),
     },
