@@ -655,9 +655,31 @@ const majorNames = {
   },
 };
 
+// Helper function to convert major name to a URL slug
+const getMajorSlug = (majorName: string) => {
+  switch (majorName) {
+    case "computerScience":
+      return "computer-science";
+    case "businessAdmin":
+      return "business-administration";
+    case "psychology":
+      return "psychology";
+    case "mechanicalEng":
+      return "mechanical-engineering";
+    case "nursing":
+      return "medicine";
+    case "marketing":
+      return "business-administration";
+    default:
+      return majorName; // Fallback in case of an unexpected major
+  }
+};
+
 export default function AssessmentPage() {
   const { t, language } = useLanguage();
-  const [assessmentMode, setAssessmentMode] = useState<'selection' | 'quiz' | 'chat'>('selection');
+  const [assessmentMode, setAssessmentMode] = useState<
+    "selection" | "quiz" | "chat"
+  >("selection");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>(
     new Array(questions.length).fill(-1),
@@ -726,7 +748,7 @@ export default function AssessmentPage() {
   const allQuestionsAnswered = answers.every((answer) => answer !== -1);
 
   // Mode selection screen
-  if (assessmentMode === 'selection') {
+  if (assessmentMode === "selection") {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
@@ -734,63 +756,95 @@ export default function AssessmentPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                {language === 'ru' ? 'Выберите способ оценки' : 'Choose Your Assessment Method'}
+                {language === "ru"
+                  ? "Выберите способ оценки"
+                  : "Choose Your Assessment Method"}
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                {language === 'ru' 
-                  ? 'Найдите подходящую специальность одним из двух способов'
-                  : 'Find your perfect major using one of two methods'
-                }
+                {language === "ru"
+                  ? "Найдите подходящую специальность одним из двух способов"
+                  : "Find your perfect major using one of two methods"}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Quiz Option */}
-              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setAssessmentMode('quiz')}>
+              <Card
+                className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setAssessmentMode("quiz")}
+              >
                 <CardHeader>
                   <CardTitle className="text-2xl text-center">
-                    {language === 'ru' ? '📝 Структурированный тест' : '📝 Structured Quiz'}
+                    {language === "ru"
+                      ? "📝 Структурированный тест"
+                      : "📝 Structured Quiz"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center space-y-4">
                   <p className="text-gray-600">
-                    {language === 'ru' 
-                      ? 'Ответьте на 8 вопросов с несколькими вариантами ответов'
-                      : 'Answer 8 multiple-choice questions'
-                    }
+                    {language === "ru"
+                      ? "Ответьте на 8 вопросов с несколькими вариантами ответов"
+                      : "Answer 8 multiple-choice questions"}
                   </p>
                   <ul className="text-sm text-gray-500 space-y-2">
-                    <li>✓ {language === 'ru' ? '5-7 минут' : '5-7 minutes'}</li>
-                    <li>✓ {language === 'ru' ? 'Точный анализ' : 'Precise analysis'}</li>
-                    <li>✓ {language === 'ru' ? 'Мгновенные результаты' : 'Instant results'}</li>
+                    <li>✓ {language === "ru" ? "5-7 минут" : "5-7 minutes"}</li>
+                    <li>
+                      ✓{" "}
+                      {language === "ru" ? "Точный анализ" : "Precise analysis"}
+                    </li>
+                    <li>
+                      ✓{" "}
+                      {language === "ru"
+                        ? "Мгновенные результаты"
+                        : "Instant results"}
+                    </li>
                   </ul>
                   <Button className="w-full mt-4">
-                    {language === 'ru' ? 'Начать тест' : 'Start Quiz'}
+                    {language === "ru" ? "Начать тест" : "Start Quiz"}
                   </Button>
                 </CardContent>
               </Card>
 
               {/* AI Chat Option */}
-              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setAssessmentMode('chat')}>
+              <Card
+                className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => setAssessmentMode("chat")}
+              >
                 <CardHeader>
                   <CardTitle className="text-2xl text-center">
-                    {language === 'ru' ? '🤖 ИИ-консультант' : '🤖 AI Counselor'}
+                    {language === "ru"
+                      ? "🤖 ИИ-консультант"
+                      : "🤖 AI Counselor"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center space-y-4">
                   <p className="text-gray-600">
-                    {language === 'ru' 
-                      ? 'Поговорите с ИИ о своих интересах и получите персональные советы'
-                      : 'Chat with AI about your interests and get personalized advice'
-                    }
+                    {language === "ru"
+                      ? "Поговорите с ИИ о своих интересах и получите персональные советы"
+                      : "Chat with AI about your interests and get personalized advice"}
                   </p>
                   <ul className="text-sm text-gray-500 space-y-2">
-                    <li>✓ {language === 'ru' ? 'Естественный разговор' : 'Natural conversation'}</li>
-                    <li>✓ {language === 'ru' ? 'Персональные советы' : 'Personalized advice'}</li>
-                    <li>✓ {language === 'ru' ? 'Интерактивная помощь' : 'Interactive guidance'}</li>
+                    <li>
+                      ✓{" "}
+                      {language === "ru"
+                        ? "Естественный разговор"
+                        : "Natural conversation"}
+                    </li>
+                    <li>
+                      ✓{" "}
+                      {language === "ru"
+                        ? "Персональные советы"
+                        : "Personalized advice"}
+                    </li>
+                    <li>
+                      ✓{" "}
+                      {language === "ru"
+                        ? "Интерактивная помощь"
+                        : "Interactive guidance"}
+                    </li>
                   </ul>
                   <Button className="w-full mt-4 bg-purple-600 hover:bg-purple-700">
-                    {language === 'ru' ? 'Начать чат' : 'Start Chat'}
+                    {language === "ru" ? "Начать чат" : "Start Chat"}
                   </Button>
                 </CardContent>
               </Card>
@@ -798,7 +852,7 @@ export default function AssessmentPage() {
 
             <div className="text-center mt-8">
               <Button variant="outline" onClick={() => window.history.back()}>
-                {language === 'ru' ? 'Назад' : 'Back'}
+                {language === "ru" ? "Назад" : "Back"}
               </Button>
             </div>
           </div>
@@ -809,14 +863,17 @@ export default function AssessmentPage() {
   }
 
   // AI Chat mode
-  if (assessmentMode === 'chat') {
+  if (assessmentMode === "chat") {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <div className="container mx-auto px-4 py-8">
           <div className="mb-4">
-            <Button variant="outline" onClick={() => setAssessmentMode('selection')}>
-              ← {language === 'ru' ? 'Назад к выбору' : 'Back to selection'}
+            <Button
+              variant="outline"
+              onClick={() => setAssessmentMode("selection")}
+            >
+              ← {language === "ru" ? "Назад к выбору" : "Back to selection"}
             </Button>
           </div>
           <AIChat />
@@ -861,7 +918,8 @@ export default function AssessmentPage() {
                         </p>
                       </div>
                     </div>
-                    <Link href={`/majors/${result.major}`}>
+                    {/* HERE IS THE CHANGE */}
+                    <Link href={`/majors/${getMajorSlug(result.major)}`}>
                       <Button>{t("View Roadmap")}</Button>
                     </Link>
                   </div>
@@ -881,13 +939,13 @@ export default function AssessmentPage() {
                       setScores({});
                     }}
                   >
-                    {language === 'ru' ? 'Пройти снова' : 'Retake Assessment'}
+                    {language === "ru" ? "Пройти снова" : "Retake Assessment"}
                   </Button>
                   <Button
                     variant="outline"
-                    onClick={() => setAssessmentMode('selection')}
+                    onClick={() => setAssessmentMode("selection")}
                   >
-                    {language === 'ru' ? 'Другой метод' : 'Try Other Method'}
+                    {language === "ru" ? "Другой метод" : "Try Other Method"}
                   </Button>
                 </div>
               </CardContent>
@@ -989,133 +1047,3 @@ export default function AssessmentPage() {
     </div>
   );
 }
-
-// The Hero component is not defined in the provided code, so I cannot fix the missing brace.
-// Assuming the intention was to fix the AssessmentPage component.
-
-// import { Target, ArrowRight, CheckCircle } from "lucide-react";
-// import Link from "next/link";
-
-// export default function AssessmentPage() {
-//   return (
-//     <div className="min-h-screen bg-gradient-to-b from-white to-purple-50">
-//       <Navbar />
-
-//       <div className="pt-24 pb-16">
-//         <div className="container mx-auto px-4">
-//           {/* Header */}
-//           <div className="text-center mb-12">
-//             <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-//               <Target className="w-8 h-8 text-purple-600" />
-//             </div>
-//             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-//               Find Your Perfect Major
-//             </h1>
-//             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-//               Take our simple interest assessment to discover college majors
-//               that align with your passions and career goals.
-//             </p>
-//           </div>
-
-//           {/* Assessment Card */}
-//           <div className="max-w-2xl mx-auto">
-//             <div className="bg-white rounded-2xl shadow-lg p-8 border border-purple-100">
-//               <div className="text-center mb-8">
-//                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-//                   Interest Assessment
-//                 </h2>
-//                 <p className="text-gray-600">
-//                   Answer 10 quick questions about your interests, strengths, and
-//                   career preferences.
-//                 </p>
-//               </div>
-
-//               {/* Features */}
-//               <div className="space-y-4 mb-8">
-//                 <div className="flex items-center">
-//                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-//                   <span className="text-gray-700">
-//                     Takes only 5 minutes to complete
-//                   </span>
-//                 </div>
-//                 <div className="flex items-center">
-//                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-//                   <span className="text-gray-700">
-//                     Personalized major recommendations
-//                   </span>
-//                 </div>
-//                 <div className="flex items-center">
-//                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-//                   <span className="text-gray-700">
-//                     Detailed career path insights
-//                   </span>
-//                 </div>
-//                 <div className="flex items-center">
-//                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-//                   <span className="text-gray-700">
-//                     No registration required
-//                   </span>
-//                 </div>
-//               </div>
-
-//               {/* CTA Button */}
-//               <div className="text-center">
-//                 <button className="inline-flex items-center px-8 py-4 text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-//                   Start Assessment
-//                   <ArrowRight className="ml-2 w-5 h-5" />
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* How it works */}
-//           <div className="mt-16 text-center">
-//             <h3 className="text-2xl font-semibold text-gray-900 mb-8">
-//               How It Works
-//             </h3>
-//             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-//               <div className="p-6">
-//                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-//                   <span className="text-purple-600 font-bold text-lg">1</span>
-//                 </div>
-//                 <h4 className="font-semibold text-gray-900 mb-2">
-//                   Answer Questions
-//                 </h4>
-//                 <p className="text-gray-600 text-sm">
-//                   Share your interests, skills, and career preferences through
-//                   our guided questionnaire.
-//                 </p>
-//               </div>
-//               <div className="p-6">
-//                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-//                   <span className="text-blue-600 font-bold text-lg">2</span>
-//                 </div>
-//                 <h4 className="font-semibold text-gray-900 mb-2">
-//                   Get Matches
-//                 </h4>
-//                 <p className="text-gray-600 text-sm">
-//                   Receive personalized major recommendations based on your
-//                   unique profile and interests.
-//                 </p>
-//               </div>
-//               <div className="p-6">
-//                 <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-//                   <span className="text-indigo-600 font-bold text-lg">3</span>
-//                 </div>
-//                 <h4 className="font-semibold text-gray-900 mb-2">
-//                   Explore Paths
-//                 </h4>
-//                 <p className="text-gray-600 text-sm">
-//                   Dive deep into recommended majors with detailed roadmaps and
-//                   career insights.
-//                 </p>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       <Footer />
-//     </div>
-//   );
-// }
