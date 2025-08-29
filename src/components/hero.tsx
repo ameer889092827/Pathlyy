@@ -8,7 +8,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Rocket, RocketIcon, Target, TrendingUp, User } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Rocket,
+  RocketIcon,
+  Target,
+  TrendingUp,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect, useState } from "react";
@@ -47,7 +55,7 @@ export default function Hero() {
 
   const stats = [
     { number: "20+", label: "College Majors and Submajors" },
-    { number: "163+", label: "Students Helped" },
+    { number: "200+", label: "Students Helped" },
     { number: "95%", label: "Satisfaction Rate" },
     { number: "100+", label: "Free resources and guides" },
   ];
