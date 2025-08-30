@@ -55,7 +55,7 @@ export default function Hero() {
 
   const stats = [
     { number: "20+", label: "College Majors and Submajors" },
-    { number: "200+", label: "Students Helped" },
+    { number: "450+", label: "Students Helped" },
     { number: "95%", label: "Satisfaction Rate" },
     { number: "100+", label: "Free resources and guides" },
   ];
