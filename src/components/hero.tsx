@@ -26,6 +26,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import ReactCountryFlag from "react-country-flag";
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -66,11 +67,11 @@ export default function Hero() {
     { number: "100+", label: "Free resources and guides", icon: Award, color: "from-orange-500 to-red-600" },
   ];
 
-  // Country flags data for stats section animation
-  const countryFlags = [
-    "🇺🇸", "🇲🇽", "🇨🇦", "🇦🇺", "🇩🇪", "🇫🇷", "🇯🇵", "🇰🇷", "🇮🇳", "🇧🇷", 
-    "🇪🇸", "🇮🇹", "🇳🇱", "🇸🇪", "🇳🇴", "🇩🇰", "🇫🇮", "🇨🇭", "🇦🇹", "🇧🇪", 
-    "🇮🇪", "🇵🇹", "🇷🇺", "🇨🇳", "🇬🇧", "🇦🇷", "🇨🇱", "🇨🇴", "🇵🇪", "🇻🇪"
+  // Country codes for stats section animation
+  const countryCodes = [
+    "US", "MX", "CA", "AU", "DE", "FR", "JP", "KR", "IN", "BR", 
+    "ES", "IT", "NL", "SE", "NO", "DK", "FI", "CH", "AT", "BE", 
+    "IE", "PT", "RU", "CN", "GB", "AR", "CL", "CO", "PE", "VE"
   ];
 
   const statsRef = useRef(null);
@@ -166,10 +167,10 @@ export default function Hero() {
                 ease: 'linear',
               }}
             >
-              {countryFlags.slice(0, 15).map((flag, index) => (
+              {countryCodes.slice(0, 15).map((code, index) => (
                 <motion.div
                   key={index}
-                  className="text-2xl opacity-30 hover:opacity-50 transition-opacity duration-300"
+                  className="opacity-30 hover:opacity-50 transition-opacity duration-300"
                   initial={{ scale: 0.9 }}
                   animate={{ scale: [0.9, 1.1, 0.9] }}
                   transition={{
@@ -178,7 +179,15 @@ export default function Hero() {
                     delay: index * 0.2,
                   }}
                 >
-                  {flag}
+                  <ReactCountryFlag
+                    countryCode={code}
+                    svg
+                    style={{
+                      width: '2em',
+                      height: '2em',
+                    }}
+                    title={code}
+                  />
                 </motion.div>
               ))}
             </motion.div>
@@ -195,10 +204,10 @@ export default function Hero() {
                 ease: 'linear',
               }}
             >
-              {countryFlags.slice(15).map((flag, index) => (
+              {countryCodes.slice(15).map((code, index) => (
                 <motion.div
                   key={index}
-                  className="text-xl opacity-25 hover:opacity-45 transition-opacity duration-300"
+                  className="opacity-25 hover:opacity-45 transition-opacity duration-300"
                   initial={{ scale: 1 }}
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{
@@ -207,7 +216,15 @@ export default function Hero() {
                     delay: index * 0.3,
                   }}
                 >
-                  {flag}
+                  <ReactCountryFlag
+                    countryCode={code}
+                    svg
+                    style={{
+                      width: '1.5em',
+                      height: '1.5em',
+                    }}
+                    title={code}
+                  />
                 </motion.div>
               ))}
             </motion.div>
