@@ -66,33 +66,11 @@ export default function Hero() {
     { number: "100+", label: "Free resources and guides", icon: Award, color: "from-orange-500 to-red-600" },
   ];
 
-  // Country flags data for animation
-  const countryFlags = [
-    { flag: "🇺🇸", name: "USA" },
-    { flag: "🇬🇧", name: "UK" },
-    { flag: "🇨🇦", name: "Canada" },
-    { flag: "🇦🇺", name: "Australia" },
-    { flag: "🇩🇪", name: "Germany" },
-    { flag: "🇫🇷", name: "France" },
-    { flag: "🇯🇵", name: "Japan" },
-    { flag: "🇰🇷", name: "South Korea" },
-    { flag: "🇮🇳", name: "India" },
-    { flag: "🇧🇷", name: "Brazil" },
-    { flag: "🇲🇽", name: "Mexico" },
-    { flag: "🇪🇸", name: "Spain" },
-    { flag: "🇮🇹", name: "Italy" },
-    { flag: "🇳🇱", name: "Netherlands" },
-    { flag: "🇸🇪", name: "Sweden" },
-    { flag: "🇳🇴", name: "Norway" },
-    { flag: "🇩🇰", name: "Denmark" },
-    { flag: "🇫🇮", name: "Finland" },
-    { flag: "🇨🇭", name: "Switzerland" },
-    { flag: "🇦🇹", name: "Austria" },
-    { flag: "🇧🇪", name: "Belgium" },
-    { flag: "🇮🇪", name: "Ireland" },
-    { flag: "🇵🇹", name: "Portugal" },
-    { flag: "🇷🇺", name: "Russia" },
-    { flag: "🇨🇳", name: "China" }
+  // Country codes data for stats section animation
+  const countryCodes = [
+    "US", "MX", "CA", "AU", "DE", "FR", "JP", "KR", "IN", "BR", 
+    "ES", "IT", "NL", "SE", "NO", "DK", "FI", "CH", "AT", "BE", 
+    "IE", "PT", "RU", "CN", "GB", "AR", "CL", "CO", "PE", "VE"
   ];
 
   const statsRef = useRef(null);
@@ -103,95 +81,6 @@ export default function Hero() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 opacity-80" />
       
-      {/* Animated Country Flags Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* First row of flags moving right */}
-        <motion.div
-          className="absolute top-20 flex space-x-16 whitespace-nowrap"
-          animate={{
-            x: ['-100%', '100%'],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        >
-          {countryFlags.slice(0, 13).map((country, index) => (
-            <motion.div
-              key={index}
-              className="text-4xl opacity-20 hover:opacity-40 transition-opacity duration-300"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: [0.8, 1, 0.8] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: index * 0.2,
-              }}
-            >
-              {country.flag}
-            </motion.div>
-          ))}
-        </motion.div>
-        
-        {/* Second row of flags moving left */}
-        <motion.div
-          className="absolute top-40 flex space-x-16 whitespace-nowrap"
-          animate={{
-            x: ['100%', '-100%'],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        >
-          {countryFlags.slice(13).map((country, index) => (
-            <motion.div
-              key={index}
-              className="text-3xl opacity-15 hover:opacity-35 transition-opacity duration-300"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: [0.9, 1.1, 0.9] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: index * 0.3,
-              }}
-            >
-              {country.flag}
-            </motion.div>
-          ))}
-        </motion.div>
-        
-        {/* Third row of flags moving right (slower) */}
-        <motion.div
-          className="absolute bottom-20 flex space-x-20 whitespace-nowrap"
-          animate={{
-            x: ['-100%', '100%'],
-          }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        >
-          {countryFlags.slice(0, 10).map((country, index) => (
-            <motion.div
-              key={index}
-              className="text-2xl opacity-10 hover:opacity-30 transition-opacity duration-300"
-              initial={{ scale: 1 }}
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                delay: index * 0.4,
-              }}
-            >
-              {country.flag}
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
 
       <div className="relative">
         {/* Hero Section */}
@@ -262,6 +151,67 @@ export default function Hero() {
         <div className="py-20 bg-gradient-to-r from-gray-50 to-white relative overflow-hidden" ref={statsRef}>
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-r from-purple-100/30 to-blue-100/30" />
+          
+          {/* Animated Country Codes Background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* First row moving right */}
+            <motion.div
+              className="absolute top-8 flex space-x-8 whitespace-nowrap"
+              animate={{
+                x: ['-100%', '100%'],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+            >
+              {countryCodes.slice(0, 15).map((code, index) => (
+                <motion.div
+                  key={index}
+                  className="text-sm font-bold text-purple-300/40 hover:text-purple-400/60 transition-colors duration-300"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: [0.9, 1.1, 0.9] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: index * 0.2,
+                  }}
+                >
+                  {code}
+                </motion.div>
+              ))}
+            </motion.div>
+            
+            {/* Second row moving left */}
+            <motion.div
+              className="absolute bottom-8 flex space-x-8 whitespace-nowrap"
+              animate={{
+                x: ['100%', '-100%'],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+            >
+              {countryCodes.slice(15).map((code, index) => (
+                <motion.div
+                  key={index}
+                  className="text-sm font-bold text-blue-300/40 hover:text-blue-400/60 transition-colors duration-300"
+                  initial={{ scale: 1 }}
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: index * 0.3,
+                  }}
+                >
+                  {code}
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
           
           <div className="container mx-auto px-4 relative">
             <motion.div
