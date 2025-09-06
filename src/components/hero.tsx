@@ -66,11 +66,11 @@ export default function Hero() {
     { number: "100+", label: "Free resources and guides", icon: Award, color: "from-orange-500 to-red-600" },
   ];
 
-  // Country codes data for stats section animation
-  const countryCodes = [
-    "US", "MX", "CA", "AU", "DE", "FR", "JP", "KR", "IN", "BR", 
-    "ES", "IT", "NL", "SE", "NO", "DK", "FI", "CH", "AT", "BE", 
-    "IE", "PT", "RU", "CN", "GB", "AR", "CL", "CO", "PE", "VE"
+  // Country flags data for stats section animation
+  const countryFlags = [
+    "🇺🇸", "🇲🇽", "🇨🇦", "🇦🇺", "🇩🇪", "🇫🇷", "🇯🇵", "🇰🇷", "🇮🇳", "🇧🇷", 
+    "🇪🇸", "🇮🇹", "🇳🇱", "🇸🇪", "🇳🇴", "🇩🇰", "🇫🇮", "🇨🇭", "🇦🇹", "🇧🇪", 
+    "🇮🇪", "🇵🇹", "🇷🇺", "🇨🇳", "🇬🇧", "🇦🇷", "🇨🇱", "🇨🇴", "🇵🇪", "🇻🇪"
   ];
 
   const statsRef = useRef(null);
@@ -166,10 +166,10 @@ export default function Hero() {
                 ease: 'linear',
               }}
             >
-              {countryCodes.slice(0, 15).map((code, index) => (
+              {countryFlags.slice(0, 15).map((flag, index) => (
                 <motion.div
                   key={index}
-                  className="text-sm font-bold text-purple-300/40 hover:text-purple-400/60 transition-colors duration-300"
+                  className="text-2xl opacity-30 hover:opacity-50 transition-opacity duration-300"
                   initial={{ scale: 0.9 }}
                   animate={{ scale: [0.9, 1.1, 0.9] }}
                   transition={{
@@ -178,7 +178,7 @@ export default function Hero() {
                     delay: index * 0.2,
                   }}
                 >
-                  {code}
+                  {flag}
                 </motion.div>
               ))}
             </motion.div>
@@ -195,10 +195,10 @@ export default function Hero() {
                 ease: 'linear',
               }}
             >
-              {countryCodes.slice(15).map((code, index) => (
+              {countryFlags.slice(15).map((flag, index) => (
                 <motion.div
                   key={index}
-                  className="text-sm font-bold text-blue-300/40 hover:text-blue-400/60 transition-colors duration-300"
+                  className="text-xl opacity-25 hover:opacity-45 transition-opacity duration-300"
                   initial={{ scale: 1 }}
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{
@@ -207,7 +207,7 @@ export default function Hero() {
                     delay: index * 0.3,
                   }}
                 >
-                  {code}
+                  {flag}
                 </motion.div>
               ))}
             </motion.div>
