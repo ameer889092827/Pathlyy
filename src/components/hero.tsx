@@ -63,12 +63,16 @@ export default function Hero() {
   const stats = [
     { number: "20+", label: "College Majors and Submajors", icon: BookMarked, color: "from-blue-500 to-indigo-600" },
     { number: "600+", label: "Students Helped", icon: Users, color: "from-green-500 to-emerald-600" },
-    { number: "25+", label: "Countries using our platform", icon: Globe, color: "from-purple-500 to-violet-600" },
+    { number: "30+", label: "Countries using our platform", icon: Globe, color: "from-purple-500 to-violet-600" },
     { number: "100+", label: "Free resources and guides", icon: Award, color: "from-orange-500 to-red-600" },
   ];
 
-  // Main focus countries
-  const mainCountries = ["KZ", "AZ", "UZ"];
+  // International countries including Central Asia and Georgia
+  const countryCodes = [
+    "KZ", "AZ", "UZ", "GE", "US", "CA", "GB", "FR", "DE", "IT", 
+    "ES", "NL", "SE", "NO", "DK", "FI", "AU", "JP", "KR", "IN", 
+    "BR", "MX", "AR", "RU", "CN", "TR", "PL", "UA", "CH", "AT"
+  ];
 
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
@@ -202,31 +206,73 @@ export default function Hero() {
             </motion.div>
           </div>
           
-          {/* Minimalistic Flag Animation */}
+          {/* International Flag Animation */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Top row moving right */}
             <motion.div
-              className="absolute top-8 flex space-x-20 whitespace-nowrap"
+              className="absolute top-6 flex space-x-12 whitespace-nowrap"
               animate={{
                 x: ['-100%', '100%'],
               }}
               transition={{
-                duration: 25,
+                duration: 30,
                 repeat: Infinity,
                 ease: 'linear',
               }}
             >
-              {mainCountries.map((code, index) => (
+              {countryCodes.slice(0, 15).map((code, index) => (
                 <motion.div
                   key={index}
-                  className="opacity-20 hover:opacity-40 transition-opacity duration-300"
+                  className="opacity-25 hover:opacity-45 transition-opacity duration-300"
                   animate={{ 
-                    scale: [1, 1.1, 1],
+                    scale: [1, 1.15, 1],
                     y: [0, -8, 0]
                   }}
                   transition={{
                     duration: 4,
                     repeat: Infinity,
-                    delay: index * 1,
+                    delay: index * 0.3,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <ReactCountryFlag
+                    countryCode={code}
+                    svg
+                    style={{
+                      width: '2.8em',
+                      height: '2.8em',
+                      borderRadius: '6px'
+                    }}
+                    title={code}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+            
+            {/* Bottom row moving left */}
+            <motion.div
+              className="absolute bottom-6 flex space-x-12 whitespace-nowrap"
+              animate={{
+                x: ['100%', '-100%'],
+              }}
+              transition={{
+                duration: 35,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+            >
+              {countryCodes.slice(15).map((code, index) => (
+                <motion.div
+                  key={index}
+                  className="opacity-20 hover:opacity-40 transition-opacity duration-300"
+                  animate={{ 
+                    scale: [1, 1.12, 1],
+                    y: [0, 8, 0]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    delay: index * 0.4,
                     ease: "easeInOut"
                   }}
                 >
@@ -236,7 +282,7 @@ export default function Hero() {
                     style={{
                       width: '2.5em',
                       height: '2.5em',
-                      borderRadius: '4px'
+                      borderRadius: '5px'
                     }}
                     title={code}
                   />
@@ -256,7 +302,7 @@ export default function Hero() {
                 Trusted by Students Worldwide
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join students from Kazakhstan, Azerbaijan, and Uzbekistan who have discovered their perfect career path
+                Join thousands of students from 30+ countries including Kazakhstan, Azerbaijan, Uzbekistan, and Georgia who have discovered their perfect career path
               </p>
             </motion.div>
             
@@ -295,7 +341,7 @@ export default function Hero() {
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           >
                             <ReactCountryFlag
-                              countryCode={mainCountries[Math.floor(Date.now() / 3000) % mainCountries.length]}
+                              countryCode={countryCodes[Math.floor(Date.now() / 3000) % countryCodes.length]}
                               svg
                               style={{
                                 width: '1.2em',
