@@ -62,11 +62,17 @@ export const signUpAction = async (formData: FormData) => {
     }
   }
 
-  return encodedRedirect(
-    "success",
-    "/sign-up",
-    "Thanks for signing up! Please check your email for a verification link.",
-  );
+  // Auto-signin after successful signup since email verification is disabled
+  const { error: signInError } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (signInError) {
+    return encodedRedirect("error", "/sign-up", "Account created but signin failed. Please try signing in manually.");
+  }
+
+  return redirect("/dashboard");
 };
 
 export const signInAction = async (formData: FormData) => {
