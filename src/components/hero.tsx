@@ -288,8 +288,8 @@ export default function Hero() {
                     countryCode={code}
                     svg
                     style={{
-                      width: "4em",
-                      height: "4em",
+                      width: "8em",
+                      height: "8em",
                       borderRadius: "8px",
                     }}
                     title={code}
@@ -329,8 +329,8 @@ export default function Hero() {
                     countryCode={code}
                     svg
                     style={{
-                      width: "3.5em",
-                      height: "3.5em",
+                      width: "8em",
+                      height: "8em",
                       borderRadius: "7px",
                     }}
                     title={code}
