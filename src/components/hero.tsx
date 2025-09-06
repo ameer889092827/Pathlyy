@@ -148,43 +148,124 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Enhanced Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-gray-50 to-white relative overflow-hidden" ref={statsRef}>
-          {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-100/30 to-blue-100/30" />
+        {/* MAGNIFICENT Flag Showcase Section */}
+        <div className="py-24 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden" ref={statsRef}>
+          {/* Enhanced background with flag-themed gradients */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-100/40 to-blue-100/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-red-50/20 via-transparent to-green-50/20" />
           
-          {/* Animated Country Codes Background */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* First row moving right */}
+          {/* Corner decorative flags */}
+          <div className="absolute top-8 left-8 opacity-20">
             <motion.div
-              className="absolute top-8 flex space-x-8 whitespace-nowrap"
+              animate={{ rotate: [0, 10, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ReactCountryFlag
+                countryCode="US"
+                svg
+                style={{
+                  width: '5em',
+                  height: '5em',
+                  borderRadius: '15px',
+                  boxShadow: '0 8px 25px rgba(0,0,0,0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
+          
+          <div className="absolute top-8 right-8 opacity-20">
+            <motion.div
+              animate={{ rotate: [0, -10, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            >
+              <ReactCountryFlag
+                countryCode="GB"
+                svg
+                style={{
+                  width: '5em',
+                  height: '5em',
+                  borderRadius: '15px',
+                  boxShadow: '0 8px 25px rgba(0,0,0,0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
+          
+          <div className="absolute bottom-8 left-8 opacity-20">
+            <motion.div
+              animate={{ rotate: [0, 8, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            >
+              <ReactCountryFlag
+                countryCode="CA"
+                svg
+                style={{
+                  width: '5em',
+                  height: '5em',
+                  borderRadius: '15px',
+                  boxShadow: '0 8px 25px rgba(0,0,0,0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
+          
+          <div className="absolute bottom-8 right-8 opacity-20">
+            <motion.div
+              animate={{ rotate: [0, -8, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            >
+              <ReactCountryFlag
+                countryCode="AU"
+                svg
+                style={{
+                  width: '5em',
+                  height: '5em',
+                  borderRadius: '15px',
+                  boxShadow: '0 8px 25px rgba(0,0,0,0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* MAGNIFICENT Animated Flags Background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Top floating flags - larger and more prominent */}
+            <motion.div
+              className="absolute top-4 flex space-x-12 whitespace-nowrap"
               animate={{
                 x: ['-100%', '100%'],
               }}
               transition={{
-                duration: 20,
+                duration: 30,
                 repeat: Infinity,
                 ease: 'linear',
               }}
             >
-              {countryCodes.slice(0, 15).map((code, index) => (
+              {countryCodes.slice(0, 10).map((code, index) => (
                 <motion.div
                   key={index}
-                  className="opacity-30 hover:opacity-50 transition-opacity duration-300"
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: [0.9, 1.1, 0.9] }}
+                  className="opacity-40 hover:opacity-70 transition-all duration-500 filter drop-shadow-lg"
+                  initial={{ scale: 0.8, rotate: -5 }}
+                  animate={{ 
+                    scale: [0.8, 1.3, 0.8],
+                    rotate: [-5, 5, -5],
+                    y: [0, -10, 0]
+                  }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
-                    delay: index * 0.2,
+                    delay: index * 0.3,
+                    ease: "easeInOut"
                   }}
                 >
                   <ReactCountryFlag
                     countryCode={code}
                     svg
                     style={{
-                      width: '2em',
-                      height: '2em',
+                      width: '3.5em',
+                      height: '3.5em',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
                     }}
                     title={code}
                   />
@@ -192,11 +273,56 @@ export default function Hero() {
               ))}
             </motion.div>
             
-            {/* Second row moving left */}
+            {/* Middle layer - diagonal movement */}
             <motion.div
-              className="absolute bottom-8 flex space-x-8 whitespace-nowrap"
+              className="absolute top-1/3 flex space-x-16 whitespace-nowrap"
               animate={{
                 x: ['100%', '-100%'],
+                y: [0, 30, 0]
+              }}
+              transition={{
+                duration: 35,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+            >
+              {countryCodes.slice(10, 20).map((code, index) => (
+                <motion.div
+                  key={index}
+                  className="opacity-35 hover:opacity-60 transition-all duration-500 filter drop-shadow-md"
+                  initial={{ scale: 1, rotate: 3 }}
+                  animate={{ 
+                    scale: [1, 1.4, 1],
+                    rotate: [3, -3, 3],
+                    opacity: [0.35, 0.55, 0.35]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    delay: index * 0.4,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <ReactCountryFlag
+                    countryCode={code}
+                    svg
+                    style={{
+                      width: '3em',
+                      height: '3em',
+                      borderRadius: '6px',
+                      boxShadow: '0 2px 10px rgba(0,0,0,0.15)'
+                    }}
+                    title={code}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+            
+            {/* Bottom spectacular flags */}
+            <motion.div
+              className="absolute bottom-4 flex space-x-10 whitespace-nowrap"
+              animate={{
+                x: ['-100%', '100%'],
               }}
               transition={{
                 duration: 25,
@@ -204,24 +330,32 @@ export default function Hero() {
                 ease: 'linear',
               }}
             >
-              {countryCodes.slice(15).map((code, index) => (
+              {countryCodes.slice(20).map((code, index) => (
                 <motion.div
                   key={index}
-                  className="opacity-25 hover:opacity-45 transition-opacity duration-300"
-                  initial={{ scale: 1 }}
-                  animate={{ scale: [1, 1.2, 1] }}
+                  className="opacity-45 hover:opacity-75 transition-all duration-500 filter drop-shadow-xl"
+                  initial={{ scale: 0.9, rotate: 2 }}
+                  animate={{ 
+                    scale: [0.9, 1.5, 0.9],
+                    rotate: [2, -2, 2],
+                    y: [0, -15, 0]
+                  }}
                   transition={{
-                    duration: 4,
+                    duration: 6,
                     repeat: Infinity,
-                    delay: index * 0.3,
+                    delay: index * 0.2,
+                    ease: "easeInOut"
                   }}
                 >
                   <ReactCountryFlag
                     countryCode={code}
                     svg
                     style={{
-                      width: '1.5em',
-                      height: '1.5em',
+                      width: '4em',
+                      height: '4em',
+                      borderRadius: '10px',
+                      boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
+                      border: '2px solid rgba(255,255,255,0.2)'
                     }}
                     title={code}
                   />
@@ -235,13 +369,33 @@ export default function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
-              className="text-center mb-12"
+              className="text-center mb-16 relative"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Trusted by Students Worldwide
+              {/* Central spotlight flag */}
+              <motion.div
+                className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-30"
+                initial={{ scale: 0, rotate: 180 }}
+                animate={isStatsInView ? { scale: 1, rotate: 0 } : {}}
+                transition={{ duration: 1.2, delay: 0.5, type: "spring", bounce: 0.4 }}
+              >
+                <ReactCountryFlag
+                  countryCode="MX"
+                  svg
+                  style={{
+                    width: '6em',
+                    height: '6em',
+                    borderRadius: '20px',
+                    boxShadow: '0 12px 35px rgba(0,0,0,0.4)',
+                    border: '3px solid rgba(255,255,255,0.3)'
+                  }}
+                />
+              </motion.div>
+              
+              <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6 mt-8">
+                🌍 Trusted by Students Worldwide 🌍
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join thousands of students who have discovered their perfect career path
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Join thousands of students from <span className="font-bold text-purple-600">25+ countries</span> who have discovered their perfect career path with our platform
               </p>
             </motion.div>
             
@@ -267,9 +421,30 @@ export default function Hero() {
                     className="text-center group cursor-pointer"
                   >
                     <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-purple-200">
-                      {/* Icon with gradient background */}
-                      <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="w-8 h-8 text-white" />
+                      {/* Enhanced icon with flag integration */}
+                      <div className="relative w-20 h-20 mx-auto mb-6">
+                        <div className={`w-full h-full rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                          <IconComponent className="w-10 h-10 text-white" />
+                        </div>
+                        {/* Mini flag decoration for "Countries" stat */}
+                        {stat.label.includes('Countries') && (
+                          <motion.div
+                            className="absolute -top-2 -right-2"
+                            animate={{ rotate: [0, 15, 0] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                          >
+                            <ReactCountryFlag
+                              countryCode={countryCodes[Math.floor(Date.now() / 2000) % countryCodes.length]}
+                              svg
+                              style={{
+                                width: '1.8em',
+                                height: '1.8em',
+                                borderRadius: '4px',
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+                              }}
+                            />
+                          </motion.div>
+                        )}
                       </div>
                       
                       {/* Number with counter animation */}
