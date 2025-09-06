@@ -8,6 +8,20 @@ const nextConfig = {
     experimental: {
         serverComponentsExternalPackages: []
     },
+    // Allow all hosts for Replit proxy environment
+    async headers() {
+        return [
+            {
+                source: '/(.*)',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'no-cache, no-store, must-revalidate',
+                    },
+                ],
+            },
+        ];
+    },
     // Performance optimizations
     swcMinify: true,
     compiler: {
