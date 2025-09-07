@@ -288,8 +288,8 @@ export default function Hero() {
                     countryCode={code}
                     svg
                     style={{
-                      width: "8em",
-                      height: "8em",
+                      width: "10em",
+                      height: "10em",
                       borderRadius: "8px",
                     }}
                     title={code}
@@ -329,8 +329,8 @@ export default function Hero() {
                     countryCode={code}
                     svg
                     style={{
-                      width: "8em",
-                      height: "8em",
+                      width: "10em",
+                      height: "10em",
                       borderRadius: "7px",
                     }}
                     title={code}
@@ -351,9 +351,7 @@ export default function Hero() {
                 Trusted by Students Worldwide
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Join thousands of students from 30+ countries including
-                Kazakhstan, Azerbaijan, Uzbekistan, and Georgia who have
-                discovered their perfect career path
+                Join students from 25+ countries who have found their path
               </p>
             </motion.div>
 
